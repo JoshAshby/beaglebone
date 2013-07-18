@@ -8,13 +8,11 @@ using namespace std;
 const string LED_DIR = "/sys/class/leds/";
 
 int toggle_led(int led) {
-  string fileBase = "beaglebone:green:usr";
-  string brightness = "/brightness";
-  char numStr[2];
-  sprintf(numStr, "%d", led);
-  string filename = LED_DIR + fileBase + numStr + brightness;
+  string filetemp = LED_DIR + "beaglebone:green:usr%d/brightness";
+  char numStr[50];
+  sprintf(numStr, filetemp.c_str(), led);
 
-  ifstream file(filename.c_str());
+  ifstream file(numStr);
   if(!file.is_open()) {
     cout << "Can't open brightness file";
     return -1;
