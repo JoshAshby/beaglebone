@@ -25,8 +25,9 @@ int toggle_led(int led) {
   while(brightnessFile.good()) {
     string val;
     getline(brightnessFile, val);
+    cout << val << endl;
     int brightness = atoi(val.c_str());
-    cout << brightness;
+    cout << brightness << endl;
   };
 
   brightnessFile.close();
