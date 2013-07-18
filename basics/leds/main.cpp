@@ -32,7 +32,7 @@ int led_out(int led) {
 
   fstream toggleFile(filenameToggle.c_str(), fstream::out);
   if(!toggleFile.is_open()) {
-    cout << "Couldn't open the trigger file";
+    cout << "Couldn't open the trigger file" << endl;
     return -1;
   };
 
@@ -50,7 +50,7 @@ int toggle_led(int led) {
 
   fstream brightnessFile(filename.c_str(), fstream::in | fstream::out);
   if(!brightnessFile.is_open()) {
-    cout << "Couldn't open the brightness file";
+    cout << "Couldn't open the brightness file" << endl;
     return -1;
   };
 
@@ -75,7 +75,7 @@ int main() {
     led_out(i);
   };
 
-  cout << "Hi beagle!\n";
+  cout << "Hi beagle!" << endl;
 
   while(true) {
     for(int i = 0; i <= 3; i++) {
