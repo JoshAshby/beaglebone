@@ -83,6 +83,11 @@ int main() {
       sleep(1);
       toggle_led(i);
     };
+    for(int i = 3; i >= 0; i--) {
+      toggle_led(i);
+      sleep(1);
+      toggle_led(i);
+    };
   };
 
   return 0;
