@@ -1,32 +1,44 @@
 #include <iostream>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string>
 #include <fstream>
+#include <sstream>
+#include <unistd.h>
 
 using namespace std;
 
 const string LED_DIR = "/sys/class/leds/";
 
 int toggle_led(int led) {
-  string filetemp = LED_DIR + "beaglebone:green:usr%d/brightness";
-  char numStr[50];
-  sprintf(numStr, filetemp.c_str(), led);
+  string fileTemp = LED_DIR + "beaglebone:green:usr";
+  stringstream where;
+  where << fileTemp << led << "/brightness";
+  string filename = where.str();
 
-  ifstream file(numStr);
-  if(!file.is_open()) {
-    cout << "Can't open brightness file";
+  fstream brightnessFile(filename.c_str(), fstream::in | fstream::out);
+  if(!brightnessFile.is_open()) {
+    cout << "Couldn't open the brightness file";
     return -1;
-  }
-  while(file.good()) {
+  };
+
+  while(brightnessFile.good()) {
     string val;
-    getline(file, val);
-    cout << val;
-  }
-  file.close();
+    getline(brightnessFile, val);
+    int brightness = atoi(val.c_str());
+    cout << brightness;
+  };
+
+  brightnessFile.close();
 }
 
 int main() {
   cout << "Hi beagle!\n";
-  toggle_led(0);
+  while(true) {
+    toggle_led(0);
+    sleep(5);
+    toggle_led(0);
+    sleep(5);
+  }
   return 0;
 }
