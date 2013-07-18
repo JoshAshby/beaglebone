@@ -1,6 +1,7 @@
 #include <iostream>
 #include <stdio.h>
 #include <string>
+#include <fstream>
 
 using namespace std;
 
@@ -13,7 +14,7 @@ int toggle_led(int led) {
   sprintf(numStr, "%d", led);
   string filename = LED_DIR + fileBase + numStr + brightness;
 
-  ifstream file(filename);
+  ifstream file(filename.c_str());
   if(!file.is_open()) {
     cout << "Can't open brightness file";
     return -1;
