@@ -71,14 +71,14 @@ int toggle_led(int led) {
 }
 
 int main() {
-  for(int i = 0; i <= 4; i++) {
+  for(int i = 0; i <= 3; i++) {
     led_out(i);
   };
 
   cout << "Hi beagle!\n";
 
   while(true) {
-    for(int i = 0; i <= 4; i++) {
+    for(int i = 0; i <= 3; i++) {
       toggle_led(i);
       sleep(1);
       toggle_led(i);
