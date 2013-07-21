@@ -6,12 +6,21 @@
 #include <sstream>
 #include <unistd.h>
 
-#include "digital.h"
+#include "gpio.h"
 
 using namespace std;
 
 
-int GPIO::exportGPIO(int pin) {
+GPIO::GPIO(char port, int portPin) {
+  port = port - 8;
+  int pin = portPin;
+}
+
+GPIO::~GPIO() {
+  delete &pin;
+}
+
+int GPIO::exportPin(void) {
   fstream exportFile(GPIO_EXPORT_FILE.c_str(), fstream::out);
 
   if(!exportFile.is_open()) {
@@ -19,10 +28,12 @@ int GPIO::exportGPIO(int pin) {
     return -1;
   };
 
+  exportFile << pin;
+
   exportFile.close();
 }
 
-int GPIO::unexportGPIO(int pin) {
+int GPIO::unexportPin(void) {
   using namespace std;
   fstream unexportFile(GPIO_UNEXPORT_FILE.c_str(), fstream::out);
 
@@ -31,7 +42,7 @@ int GPIO::unexportGPIO(int pin) {
     return -1;
   };
 
+  unexportFile << pin;
+
   unexportFile.close();
 }
-
-GPIO gpio;
