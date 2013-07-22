@@ -10,8 +10,14 @@
 
 using namespace std;
 
+const std::string GPIO::GPIO_BASE_DIR      = "/sys/class/gpio/";
+const std::string GPIO::GPIO_EXPORT_FILE   = GPIO_BASE_DIR + "export";
+const std::string GPIO::GPIO_UNEXPORT_FILE = GPIO_BASE_DIR + "unexport";
+
 
 GPIO::GPIO(int port, int portPin) : pin(port*32+pin) {}
+
+GPIO::~GPIO() {}
 
 int GPIO::exportPin(void) {
   fstream exportFile(GPIO_EXPORT_FILE.c_str(), fstream::out);

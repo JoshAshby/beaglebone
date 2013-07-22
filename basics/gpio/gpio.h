@@ -2,13 +2,14 @@
 
 #ifndef GPIO_H
 #define GPIO_H
-std::string GPIO_BASE_DIR      = "/sys/class/gpio/";
-std::string GPIO_EXPORT_FILE   = GPIO_BASE_DIR + "export";
-std::string GPIO_UNEXPORT_FILE = GPIO_BASE_DIR + "unexport";
+
 
 class GPIO {
-  private:
+  protected:
     const int pin;
+    static const std::string GPIO_BASE_DIR;
+    static const std::string GPIO_EXPORT_FILE;
+    static const std::string GPIO_UNEXPORT_FILE;
 
   public:
     GPIO(int port, int portPin);
@@ -20,6 +21,7 @@ class GPIO {
     int high(void);
     int low(void);
 
+    int input(void);
     int output(void);
 };
 
