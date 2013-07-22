@@ -15,37 +15,83 @@ const std::string GPIO::GPIO_EXPORT_FILE   = GPIO_BASE_DIR + "export";
 const std::string GPIO::GPIO_UNEXPORT_FILE = GPIO_BASE_DIR + "unexport";
 
 
-GPIO::GPIO(int port, int portPin) : pin(port*32+pin),
-  pinFolder((stringstream() << GPIO_BASE_DIR << "gpio" << pin).str()) {}
+GPIO::GPIO(int port, int portPin) : pin(port*32+pin) {}
 
 GPIO::~GPIO() {}
+
+string GPIO::genFileStr(string filename) {
+  stringstream folder;
+  folder << GPIO_BASE_DIR << "gpio" << pin << "/" << filename;
+  return folder.str();
+}
 
 int GPIO::exportPin(void) {
   fstream exportFile(GPIO_EXPORT_FILE.c_str(), fstream::out);
 
   if(!exportFile.is_open()) {
-    cout << "Couldn't open the gpio export file";
+    cout << "Could not open the GPIO export file";
     return -1;
   };
 
   exportFile << pin;
 
   exportFile.close();
-
-  stringstream folder;
-  folder << GPIO_BASE_DIR << "gpio" << pin;
-  const std::string pinFolder = folder.str();
 }
 
 int GPIO::unexportPin(void) {
   fstream unexportFile(GPIO_UNEXPORT_FILE.c_str(), fstream::out);
 
   if(!unexportFile.is_open()) {
-    cout << "Couldn't open the gpio unexport file";
+    cout << "Could not open the GPIO unexport file";
     return -1;
   };
 
   unexportFile << pin;
 
   unexportFile.close();
+}
+
+int GPIO::setDirection(bool which) {
+  // This is probably highly wrong, but I guess I'll either find out the hard
+  // way or through actually taking the time to read the sysfs driver manual
+  fstream directionFile(genFileStr("direction").c_str(), fstream::out);
+
+  if(!directionFile.is_open()) {
+    cout << "Could not open the GPIO direction file";
+    return -1;
+  };
+
+  if(which) {
+    directionFile << "high";
+  } else {
+    directionFile << "low";
+  }
+
+  directionFile.close();
+  return 0;
+}
+
+int GPIO::input(void) {
+  return setDirection(true);
+}
+
+int GPIO::output(void) {
+  return setDirection(false);
+}
+
+int GPIO::getValue(void) {
+  fstream valueFile(genFileStr("value").c_str(), fstream::in);
+
+  if(!valueFile.is_open()) {
+    cout << "Could not open the GPIO's value file";
+    return -1;
+  }
+
+  string val;
+  getline(valueFile, val);
+  int value = atoi(val.c_str());
+
+  valueFile.close();
+
+  return value;
 }

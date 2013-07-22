@@ -12,11 +12,11 @@ int main() {
 
   GPIO led(1, 6);
   led.exportPin();
-  led.output();
+  led.input();
 
-  led.high();
-  sleep(5);
-  led.low();
+  while(true) {
+    cout << led.getValue();
+  }
 
   led.unexportPin();
   return 0;
