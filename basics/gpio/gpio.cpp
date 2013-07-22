@@ -11,13 +11,7 @@
 using namespace std;
 
 
-GPIO::GPIO(char port, int portPin) {
-  int pin = port * 32 + portPin;
-}
-
-GPIO::~GPIO() {
-  delete &pin;
-}
+GPIO::GPIO(int port, int portPin) : pin(port*32+pin) {}
 
 int GPIO::exportPin(void) {
   fstream exportFile(GPIO_EXPORT_FILE.c_str(), fstream::out);
@@ -33,7 +27,6 @@ int GPIO::exportPin(void) {
 }
 
 int GPIO::unexportPin(void) {
-  using namespace std;
   fstream unexportFile(GPIO_UNEXPORT_FILE.c_str(), fstream::out);
 
   if(!unexportFile.is_open()) {
