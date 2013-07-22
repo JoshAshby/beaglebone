@@ -18,6 +18,11 @@ class GPIO {
 
     int exportPin(void);
     int unexportPin(void);
+
+    int high(void);
+    int low(void);
+
+    int output(void);
 };
 
 #endif

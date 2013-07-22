@@ -12,8 +12,7 @@ using namespace std;
 
 
 GPIO::GPIO(char port, int portPin) {
-  port = port - 8;
-  int pin = portPin;
+  int pin = port * 32 + portPin;
 }
 
 GPIO::~GPIO() {
