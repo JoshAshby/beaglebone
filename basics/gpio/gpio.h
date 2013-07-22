@@ -7,6 +7,7 @@
 class GPIO {
   protected:
     const int pin;
+    const std::string pinFolder;
     static const std::string GPIO_BASE_DIR;
     static const std::string GPIO_EXPORT_FILE;
     static const std::string GPIO_UNEXPORT_FILE;
