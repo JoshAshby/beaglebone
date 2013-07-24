@@ -7,6 +7,7 @@
 
 using namespace std;
 
+
 int main() {
   cout << "Hi beagle!" << endl;
 
@@ -15,6 +16,7 @@ int main() {
   led.input();
 
   while(true) {
+    sleep(5);
     cout << led.getValue();
   }
 
