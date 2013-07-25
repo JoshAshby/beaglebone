@@ -11,9 +11,9 @@
 using namespace std;
 
 
-LED::LED_DIR = "/sys/class/leds/";
+const string LED::LED_DIR = "/sys/class/leds/";
 
-LED::LED(int which) : led(pin) {}
+LED::LED(int which) : led(which) {}
 
 LED::~LED() {}
 
