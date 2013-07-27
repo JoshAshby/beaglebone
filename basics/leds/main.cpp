@@ -13,9 +13,9 @@ using namespace std;
 
 int main() {
   cout << "Hi beagle!" << endl;
+  LED led(0);
 
   while(true) {
-    LED led(0);
     led.on();
     sleep(5);
     led.off();

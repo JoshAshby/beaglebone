@@ -15,7 +15,7 @@ const std::string GPIO::GPIO_EXPORT_FILE   = GPIO_BASE_DIR + "export";
 const std::string GPIO::GPIO_UNEXPORT_FILE = GPIO_BASE_DIR + "unexport";
 
 
-GPIO::GPIO(int port, int portPin) : pin(port*32+pin) {}
+GPIO::GPIO(int port, int portPin) : pin(port*32+portPin) {}
 
 GPIO::~GPIO() {}
 
@@ -36,6 +36,7 @@ int GPIO::exportPin(void) {
   exportFile << pin;
 
   exportFile.close();
+  return 0;
 }
 
 int GPIO::unexportPin(void) {
@@ -49,6 +50,7 @@ int GPIO::unexportPin(void) {
   unexportFile << pin;
 
   unexportFile.close();
+  return 0;
 }
 
 int GPIO::setDirection(bool which) {
