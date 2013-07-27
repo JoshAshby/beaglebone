@@ -1,2 +1,2 @@
 default:
-	g++ -std=gnu++11 gpio.cpp main.cpp
+	clang++ gpio.cpp main.cpp

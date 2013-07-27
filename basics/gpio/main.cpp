@@ -15,7 +15,7 @@ int main() {
   led.exportPin();
   led.input();
 
-  while(true) {
+  for(int i=0; i<=9; i++) {
     sleep(5);
     cout << led.getValue();
   }

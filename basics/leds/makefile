@@ -1,2 +1,2 @@
 default:
-	g++ -std=gnu++11 led.cpp main.cpp
+	clang++ led.cpp main.cpp
