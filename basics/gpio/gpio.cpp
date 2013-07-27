@@ -64,9 +64,9 @@ int GPIO::setDirection(bool which) {
   };
 
   if(which) {
-    directionFile << "high";
+    directionFile << "in";
   } else {
-    directionFile << "low";
+    directionFile << "out";
   }
 
   directionFile.close();
@@ -79,6 +79,34 @@ int GPIO::input(void) {
 
 int GPIO::output(void) {
   return setDirection(false);
+}
+
+int GPIO::setHigh(void) {
+  fstream valueFile(genFileStr("value").c_str(), fstream::out);
+
+  if(!valueFile.is_open()) {
+    cout << "Could not open the GPIO's value file";
+    return -1;
+  }
+
+  valueFile << 1;
+
+  valueFile.close();
+  return 0;
+}
+
+int GPIO::setLow(void) {
+  fstream valueFile(genFileStr("value").c_str(), fstream::out);
+
+  if(!valueFile.is_open()) {
+    cout << "Could not open the GPIO's value file";
+    return -1;
+  }
+
+  valueFile << 0;
+
+  valueFile.close();
+  return 0;
 }
 
 int GPIO::getValue(void) {

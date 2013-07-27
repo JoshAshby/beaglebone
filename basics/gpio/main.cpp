@@ -17,7 +17,9 @@ int main() {
 
   for(int i=0; i<=9; i++) {
     sleep(5);
-    cout << led.getValue();
+    led.setHigh();
+    sleep(5);
+    led.setLow();
   }
 
   led.unexportPin();

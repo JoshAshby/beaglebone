@@ -15,12 +15,14 @@ int main() {
   cout << "Hi beagle!" << endl;
   LED led(0);
 
-  while(true) {
+  for(int i=0; i=9; i++) {
     led.on();
     sleep(5);
     led.off();
     sleep(5);
   }
+
+  led.setTrigger("heartbeat");
 
   return 0;
 }

@@ -22,13 +22,12 @@ class GPIO {
     int exportPin(void);
     int unexportPin(void);
 
-    int high(void);
-    int low(void);
-
     int input(void);
-    int output(void);
-
     int getValue(void);
+
+    int output(void);
+    int setHigh(void);
+    int setLow(void);
 };
 
 #endif
