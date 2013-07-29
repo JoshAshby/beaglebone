@@ -13,7 +13,11 @@ int main() {
 
   GPIO led(1, 6);
   led.exportPin();
-  led.input();
+  led.output();
+
+  GPIO btn(1, 7);
+  btn.exportPin();
+  btn.input();
 
   for(int i=0; i<=9; i++) {
     sleep(5);
@@ -22,6 +26,16 @@ int main() {
     led.setLow();
   }
 
+  cout << "Press the button!" << endl;
+
+  bool val = false;
+  while(!val) {
+    val = btn.getValue();
+  }
+
+  cout << "Button!" << endl;
+
   led.unexportPin();
+  btn.unexportPin();
   return 0;
 }
