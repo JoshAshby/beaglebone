@@ -1,5 +1,7 @@
+WHAT=gpio.cpp button.cpp main.cpp
+
 default:
-	g++ gpio.cpp main.cpp
+	g++ ${WHAT}
 
 clang:
-	clang gpio.cpp main.cpp
+	clang ${WHAT}

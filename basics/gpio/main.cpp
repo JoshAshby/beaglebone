@@ -4,6 +4,7 @@
 #include <unistd.h>
 
 #include "gpio.h"
+#include "button.h"
 
 using namespace std;
 
@@ -26,16 +27,16 @@ int main() {
   GPIO* colors[] = {&red, &blue, &green};
 
 
-  GPIO redBtn(2, 13);
+  Button redBtn(2, 13);
   redBtn.input();
 
-  GPIO blueBtn(2, 11);
+  Button blueBtn(2, 11);
   blueBtn.input();
 
-  GPIO greenBtn(2, 9);
+  Button greenBtn(2, 9);
   greenBtn.input();
 
-  GPIO whiteBtn(2, 7);
+  Button whiteBtn(2, 7);
   whiteBtn.input();
 
   bool clicks[3];
@@ -43,9 +44,9 @@ int main() {
     if(whiteBtn.getValue())
       break;
 
-    clicks[0] = redBtn.getValue();
-    clicks[1] = blueBtn.getValue();
-    clicks[2] = greenBtn.getValue();
+    clicks[0] = redBtn.debounce();
+    clicks[1] = blueBtn.debounce();
+    clicks[2] = greenBtn.debounce();
 
     for(int i=0; i<=2; i++) {
       if(clicks[i]) {
