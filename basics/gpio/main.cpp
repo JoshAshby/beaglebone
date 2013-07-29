@@ -14,48 +14,54 @@ int main() {
   GPIO green(1, 6);
   green.output();
 
-  GPIO red(1, 2);
+  GPIO red(1, 0);
   red.output();
 
   GPIO blue(2, 2);
   blue.output();
 
-  GPIO *colors[2];
+  GPIO *colors[3];
   colors[0] = &red;
   colors[1] = &blue;
   colors[2] = &green;
 
-
-  GPIO greenBtn(1, 3);
-  greenBtn.input();
-
-  GPIO redBtn(1, 7);
-  redBtn.input();
-
-  GPIO blueBtn(2, 4);
-  blueBtn.input();
-
-  GPIO whiteBtn(2, 3);
-  whiteBtn.input();
-
-  bool wClick = false;
-  while(!wClick) {
-    wClick = whiteBtn.getValue();
+  for(int i=0; i<=2; i++) {
+    colors[i]->setHigh();
+    sleep(5);
+    colors[i]->setLow();
   }
 
-  bool clicks[2];
 
-  while(true) {
-    clicks[0] = redBtn.getValue();
-    clicks[1] = blueBtn.getValue();
-    clicks[2] = greenBtn.getValue();
+  //GPIO greenBtn(1, 3);
+  //greenBtn.input();
 
-    for(int i=0; i<=2; i++) {
-      if(clicks[i]) {
-        colors[i]->toggle();
-      }
-    }
-  }
+  //GPIO redBtn(1, 7);
+  //redBtn.input();
+
+  //GPIO blueBtn(2, 4);
+  //blueBtn.input();
+
+  //GPIO whiteBtn(2, 3);
+  //whiteBtn.input();
+
+  //bool wClick = false;
+  //while(!wClick) {
+    //wClick = whiteBtn.getValue();
+  //}
+
+  //bool clicks[2];
+
+  //while(true) {
+    //clicks[0] = redBtn.getValue();
+    //clicks[1] = blueBtn.getValue();
+    //clicks[2] = greenBtn.getValue();
+
+    //for(int i=0; i<=2; i++) {
+      //if(clicks[i]) {
+        //colors[i]->toggle();
+      //}
+    //}
+  //}
 
   return 0;
 }

@@ -15,7 +15,7 @@ const std::string GPIO::GPIO_EXPORT_FILE   = GPIO_BASE_DIR + "export";
 const std::string GPIO::GPIO_UNEXPORT_FILE = GPIO_BASE_DIR + "unexport";
 
 
-GPIO::GPIO(int port, int portPin) : pin(port*32+portPin) {
+GPIO::GPIO(int port, int portPin) : pin((port*32)+portPin) {
   exportPin();
 }
 
@@ -33,7 +33,7 @@ int GPIO::exportPin(void) {
   fstream exportFile(GPIO_EXPORT_FILE.c_str(), fstream::out);
 
   if(!exportFile.is_open()) {
-    cout << "Could not open the GPIO export file";
+    cout << "Could not open the GPIO export file" << endl;
     return -1;
   };
 
@@ -47,7 +47,7 @@ int GPIO::unexportPin(void) {
   fstream unexportFile(GPIO_UNEXPORT_FILE.c_str(), fstream::out);
 
   if(!unexportFile.is_open()) {
-    cout << "Could not open the GPIO unexport file";
+    cout << "Could not open the GPIO unexport file" << endl;
     return -1;
   };
 
@@ -63,7 +63,7 @@ int GPIO::setDirection(bool which) {
   fstream directionFile(genFileStr("direction").c_str(), fstream::out);
 
   if(!directionFile.is_open()) {
-    cout << "Could not open the GPIO direction file";
+    cout << "Could not open the GPIO direction file" << endl;
     return -1;
   };
 
@@ -89,7 +89,7 @@ int GPIO::setHigh(void) {
   fstream valueFile(genFileStr("value").c_str(), fstream::out);
 
   if(!valueFile.is_open()) {
-    cout << "Could not open the GPIO's value file";
+    cout << "Could not open the GPIO's value file" << endl;
     return -1;
   }
 
@@ -103,7 +103,7 @@ int GPIO::setLow(void) {
   fstream valueFile(genFileStr("value").c_str(), fstream::out);
 
   if(!valueFile.is_open()) {
-    cout << "Could not open the GPIO's value file";
+    cout << "Could not open the GPIO's value file" << endl;
     return -1;
   }
 
@@ -117,7 +117,7 @@ int GPIO::toggle(void) {
   fstream valueFile(genFileStr("value").c_str(), fstream::out | fstream::in);
 
   if(!valueFile.is_open()) {
-    cout << "Could not open the GPIO's value file";
+    cout << "Could not open the GPIO's value file" << endl;
     return -1;
   }
 
@@ -142,7 +142,7 @@ int GPIO::getValue(void) {
   fstream valueFile(genFileStr("value").c_str(), fstream::in);
 
   if(!valueFile.is_open()) {
-    cout << "Could not open the GPIO's value file";
+    cout << "Could not open the GPIO's value file" << endl;
     return -1;
   }
 
