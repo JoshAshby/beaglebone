@@ -15,9 +15,13 @@ const std::string GPIO::GPIO_EXPORT_FILE   = GPIO_BASE_DIR + "export";
 const std::string GPIO::GPIO_UNEXPORT_FILE = GPIO_BASE_DIR + "unexport";
 
 
-GPIO::GPIO(int port, int portPin) : pin(port*32+portPin) {}
+GPIO::GPIO(int port, int portPin) : pin(port*32+portPin) {
+  exportPin();
+}
 
-GPIO::~GPIO() {}
+GPIO::~GPIO() {
+  unexportPin();
+}
 
 string GPIO::genFileStr(string filename) {
   stringstream folder;
@@ -106,6 +110,31 @@ int GPIO::setLow(void) {
   valueFile << 0;
 
   valueFile.close();
+  return 0;
+}
+
+int GPIO::toggle(void) {
+  fstream valueFile(genFileStr("value").c_str(), fstream::out | fstream::in);
+
+  if(!valueFile.is_open()) {
+    cout << "Could not open the GPIO's value file";
+    return -1;
+  }
+
+  string valStr;
+  getline(valueFile, valStr);
+
+  int val = atoi(valStr.c_str());
+  if(val >= 1) {
+    val = 0;
+  } else {
+    val = 1;
+  }
+
+  valueFile << val;
+
+  valueFile.close();
+
   return 0;
 }
 

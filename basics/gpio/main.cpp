@@ -11,31 +11,51 @@ using namespace std;
 int main() {
   cout << "Hi beagle!" << endl;
 
-  GPIO led(1, 6);
-  led.exportPin();
-  led.output();
+  GPIO green(1, 6);
+  green.output();
 
-  GPIO btn(1, 7);
-  btn.exportPin();
-  btn.input();
+  GPIO red(1, 2);
+  red.output();
 
-  for(int i=0; i<=9; i++) {
-    sleep(5);
-    led.setHigh();
-    sleep(5);
-    led.setLow();
+  GPIO blue(2, 2);
+  blue.output();
+
+  GPIO *colors[2];
+  colors[0] = &red;
+  colors[1] = &blue;
+  colors[2] = &green;
+
+
+  GPIO greenBtn(1, 3);
+  greenBtn.input();
+
+  GPIO redBtn(1, 7);
+  redBtn.input();
+
+  GPIO blueBtn(2, 4);
+  blueBtn.input();
+
+  GPIO whiteBtn(2, 3);
+  whiteBtn.input();
+
+  bool wClick = false;
+  while(!wClick) {
+    wClick = whiteBtn.getValue();
   }
 
-  cout << "Press the button!" << endl;
+  bool clicks[2];
 
-  bool val = false;
-  while(!val) {
-    val = btn.getValue();
+  while(true) {
+    clicks[0] = redBtn.getValue();
+    clicks[1] = blueBtn.getValue();
+    clicks[2] = greenBtn.getValue();
+
+    for(int i=0; i<=2; i++) {
+      if(clicks[i]) {
+        colors[i]->toggle();
+      }
+    }
   }
 
-  cout << "Button!" << endl;
-
-  led.unexportPin();
-  btn.unexportPin();
   return 0;
 }

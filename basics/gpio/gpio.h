@@ -28,6 +28,7 @@ class GPIO {
     int output(void);
     int setHigh(void);
     int setLow(void);
+    int toggle(void);
 };
 
 #endif
