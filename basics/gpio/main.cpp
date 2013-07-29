@@ -11,26 +11,25 @@ using namespace std;
 int main() {
   cout << "Hi beagle!" << endl;
 
-  GPIO green(1, 6);
-  green.output();
-
-  GPIO red(1, 0);
+  GPIO red(2, 10);
   red.output();
+  red.setHigh();
 
-  GPIO blue(2, 2);
+  GPIO blue(2, 8);
   blue.output();
+  blue.setHigh();
 
-  GPIO *colors[3];
-  colors[0] = &red;
-  colors[1] = &blue;
-  colors[2] = &green;
+  GPIO green(2, 6);
+  green.output();
+  green.setHigh();
+
+  GPIO* colors[] = {&red, &blue, &green};
 
   for(int i=0; i<=2; i++) {
-    colors[i]->setHigh();
-    sleep(5);
     colors[i]->setLow();
+    sleep(5);
+    colors[i]->setHigh();
   }
-
 
   //GPIO greenBtn(1, 3);
   //greenBtn.input();

@@ -39,6 +39,7 @@ int GPIO::exportPin(void) {
 
   exportFile << pin;
 
+  exportFile.flush();
   exportFile.close();
   return 0;
 }
@@ -53,6 +54,7 @@ int GPIO::unexportPin(void) {
 
   unexportFile << pin;
 
+  unexportFile.flush();
   unexportFile.close();
   return 0;
 }
@@ -73,6 +75,7 @@ int GPIO::setDirection(bool which) {
     directionFile << "out";
   }
 
+  directionFile.flush();
   directionFile.close();
   return 0;
 }
@@ -95,6 +98,7 @@ int GPIO::setHigh(void) {
 
   valueFile << 1;
 
+  valueFile.flush();
   valueFile.close();
   return 0;
 }
@@ -109,6 +113,7 @@ int GPIO::setLow(void) {
 
   valueFile << 0;
 
+  valueFile.flush();
   valueFile.close();
   return 0;
 }
@@ -133,8 +138,8 @@ int GPIO::toggle(void) {
 
   valueFile << val;
 
+  valueFile.flush();
   valueFile.close();
-
   return 0;
 }
 

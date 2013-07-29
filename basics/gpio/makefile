@@ -1,2 +1,5 @@
 default:
-	clang++ gpio.cpp main.cpp
+	g++ gpio.cpp main.cpp
+
+clang:
+	clang gpio.cpp main.cpp
