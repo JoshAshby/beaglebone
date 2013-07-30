@@ -1,0 +1,7 @@
+scp * root@192.168.0.16:repos/beaglebone/x10/
+
+ssh root@192.168.0.16 << EOF
+  cd repos/beaglebone/x10/
+  make
+  ./a.out
+EOF
