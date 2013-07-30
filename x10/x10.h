@@ -15,15 +15,16 @@ class x10 {
     GPIO* zeroPin;
     GPIO* txPin;
     int sendStartCmd(void);
-    int sendCmd(char what, int howmany);
+    int sendHouse(char what);
+    int sendKey(char what);
     int waitForZeroCross(int howMany);
-    int write(int val);
+    int write(char val);
 
   public:
     x10(GPIO* zero, GPIO* tx);
     ~x10();
 
-    int send(char house, char number);
+    int send(char house, char number, int times);
 };
 
 #endif

@@ -6,6 +6,7 @@ using namespace std;
 
 const int Button::max = 150;
 
+
 Button::Button(int port, int portPin) : GPIO(port, portPin) {
   exportPin();
 }

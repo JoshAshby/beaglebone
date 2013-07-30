@@ -10,6 +10,7 @@
 
 using namespace std;
 
+
 const std::string GPIO::GPIO_BASE_DIR      = "/sys/class/gpio/";
 const std::string GPIO::GPIO_EXPORT_FILE   = GPIO_BASE_DIR + "export";
 const std::string GPIO::GPIO_UNEXPORT_FILE = GPIO_BASE_DIR + "unexport";
@@ -59,7 +60,7 @@ int GPIO::unexportPin(void) {
   return 0;
 }
 
-int GPIO::setDirection(bool which) {
+int GPIO::setDirection(direction which) {
   // This is probably highly wrong, but I guess I'll either find out the hard
   // way or through actually taking the time to read the sysfs driver manual
   fstream directionFile(genFileStr("direction").c_str(), fstream::out);
@@ -69,7 +70,7 @@ int GPIO::setDirection(bool which) {
     return -1;
   };
 
-  if(which) {
+  if(which == IN) {
     directionFile << "in";
   } else {
     directionFile << "out";
@@ -81,11 +82,11 @@ int GPIO::setDirection(bool which) {
 }
 
 int GPIO::input(void) {
-  return setDirection(true);
+  return setDirection(IN);
 }
 
 int GPIO::output(void) {
-  return setDirection(false);
+  return setDirection(OUT);
 }
 
 int GPIO::setHigh(void) {

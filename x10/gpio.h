@@ -3,7 +3,6 @@
 #ifndef GPIO_H
 #define GPIO_H
 
-
 class GPIO {
   protected:
     static const std::string GPIO_BASE_DIR;
@@ -13,14 +12,16 @@ class GPIO {
     const int pin;
 
     std::string genFileStr(std::string filename);
-    int setDirection(bool which);
 
   public:
+    enum direction {IN, OUT} pinDirection;
     GPIO(int port, int portPin);
     ~GPIO();
 
     int exportPin(void);
     int unexportPin(void);
+
+    int setDirection(direction which);
 
     int input(void);
     int getValue(void);
