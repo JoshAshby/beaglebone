@@ -6,6 +6,7 @@
 
 using namespace std;
 
+
 // Half copy pasta currently from https://github.com/tigoe/x10/blob/master/x10.cpp
 
 x10::x10(GPIO* zero, GPIO* tx) : zeroPin(zero), txPin(tx) {

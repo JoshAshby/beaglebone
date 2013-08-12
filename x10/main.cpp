@@ -26,12 +26,12 @@ int main() {
 
     sleep(7);
     cout << "ALL OFF" << endl;
-    x10Obj.send(0b0110, 0b00001, 2);
+    x10Obj.send(x10::HOUSE_A, x10::ALL_LIGHTS_OFF, 2);
     sleep(5);
 
     cout << "ALL ON" << endl;
-    x10Obj.send(0b0110, 0b00011, 2);
-  }
+    x10Obj.send(x10::HOUSE_A, x10::ALL_LIGHTS_ON, 2);
+  };
 
   return 0;
-}
+};

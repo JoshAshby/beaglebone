@@ -14,7 +14,7 @@ class GPIO {
     std::string genFileStr(std::string filename);
 
   public:
-    enum direction {IN, OUT} pinDirection;
+    enum direction {IN, OUT};
     GPIO(int port, int portPin);
     ~GPIO();
 
