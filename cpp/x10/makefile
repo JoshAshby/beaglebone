@@ -4,4 +4,4 @@ default:
 	g++ ${WHAT}
 
 clang:
-	clang ${WHAT}
+	clang++ ${WHAT}

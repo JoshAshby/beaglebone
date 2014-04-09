@@ -98,6 +98,7 @@ int x10::sendKey(char key) {
 
 int x10::waitForZeroCross(int howMany) {
   for (int i=0; i<howMany; i++) {
+    cout << "Waiting for change" << endl;
     if(zeroPin->getValue()) {
       while(zeroPin->getValue()) {}
     } else {

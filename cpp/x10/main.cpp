@@ -20,17 +20,21 @@ int main() {
   Button whiteBtn(2, 7);
   whiteBtn.input();
 
+  Button redBtn(2, 13);
+  redBtn.input();
+
+  Button greenBtn(2, 9);
+  greenBtn.input();
+
   while(true) {
     if(whiteBtn.getValue())
       break;
 
-    sleep(7);
-    cout << "ALL OFF" << endl;
-    x10Obj.send(x10::HOUSE_A, x10::ALL_LIGHTS_OFF, 2);
-    sleep(5);
+    if(redBtn.getValue())
+        x10Obj.send(x10::HOUSE_A, x10::ALL_LIGHTS_OFF, 2);
 
-    cout << "ALL ON" << endl;
-    x10Obj.send(x10::HOUSE_A, x10::ALL_LIGHTS_ON, 2);
+    if(greenBtn.getValue())
+      x10Obj.send(x10::HOUSE_A, x10::ALL_LIGHTS_ON, 2);
   };
 
   return 0;
