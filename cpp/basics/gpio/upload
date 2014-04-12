@@ -1,7 +1,0 @@
-scp * root@192.168.0.16:repos/beaglebone/basics/gpio/
-
-ssh root@192.168.0.16 << EOF
-  cd repos/beaglebone/basics/gpio/
-  make
-  ./a.out
-EOF

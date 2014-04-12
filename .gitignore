@@ -26,6 +26,9 @@ docs/_build
 dist
 MANIFEST
 
+rust/build
+rust/test
+
 # Compiled source #
 ###################
 *.a
